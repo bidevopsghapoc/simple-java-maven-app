@@ -1,14 +1,12 @@
 pipeline {
-    agent {
-        steps {
-            sh 'sudo usermod -a -G docker jenkins'
-        }
-        docker {
-            image 'maven:3.9.0-eclipse-temurin-11' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+    agent any
+  stages {
+    stage('version') {
+      steps {
+        sh 'python3 --version'
+      }
     }
-    stages {
+
         stage('Build') { 
             steps {
                 sh 'mvn -B -DskipTests clean package' 
