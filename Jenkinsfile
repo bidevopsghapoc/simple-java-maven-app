@@ -1,7 +1,9 @@
 pipeline {
     agent {
-        docker {
+        steps {
             sh 'sudo usermod -a -G docker jenkins'
+        }
+        docker {
             image 'maven:3.9.0-eclipse-temurin-11' 
             args '-v /root/.m2:/root/.m2' 
         }
